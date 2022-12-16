@@ -58,7 +58,7 @@ async function setAnonymityProviderAddress(tokenAddress, mixAddress, senderAccou
 
 async function registerVoter(senderAccount, tokenAddress, toAccount) {
     const erc20 = await new web3.eth.Contract(VoteTokenJson.abi, tokenAddress);
-    return await erc20.methods.transfer(toAccount,1).send({from: senderAccount, gas: 2e6});
+    return await erc20.methods.transfer(toAccount, 1).send({from: senderAccount, gas: 2e6});
 }
 
 async function advanceToNextPhase(nextPhaseBlock) {
@@ -262,9 +262,7 @@ contract("VoteToken", accounts => {
 
       const vote_commitment = Buffer.concat([vote_commitment_secret.leInt2Buff(31), Buffer.from(vote_choice.buffer)], 32);
       const vote_commitment_hash = Web3.utils.sha3(vote_commitment);
-
-      const vote_commitment_secret_hash = Buffer.from(web3.utils.hexToBytes(vote_commitment_hash));
-      const vote_commitment_secret_hash_slice = web3.utils.bytesToHex(vote_commitment_secret_hash.slice(0, 20));
+      const vote_commitment_hash_slice = web3.utils.bytesToHex(Buffer.from(web3.utils.hexToBytes(vote_commitment_hash)).slice(0, 20));
 
       const { root, path_elements, path_index } = await tree.path(0);
       // Circuit input
@@ -273,7 +271,7 @@ contract("VoteToken", accounts => {
         root,
         nullifierHash: pedersenHash(deposit.nullifier.leInt2Buff(31)),
         relayer,
-        recipient: vote_commitment_secret_hash_slice,
+        recipient: vote_commitment_hash_slice,
         fee,
         refund,
 
