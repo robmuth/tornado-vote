@@ -107,3 +107,5 @@ package-lock.json
 /contracts/*.bpl
 /contracts/Libraries/*.bpl
 /contracts/Libraries/*.txt
+
+.DS_Store
