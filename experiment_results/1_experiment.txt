@@ -1,0 +1,103 @@
+tokenNetworkIndex 1671194133836
+tokenAddress 0x04249e6b19e7C49234565224c115a1294C585eB4
+NetId is  1671194133836
+Sender address  0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+tornadoAddress 0xE9F0f5950a99861688D55bF00C7166Ac86F49A5E
+Vote token address is  0x04249e6b19e7C49234565224c115a1294C585eB4
+anonymity provider address is  0x0000000000000000000000000000000000000000
+Setting anonymity provider
+Current Block 10
+EndRegistrationPhaseBlocknr 26
+EndCommitPhaseBlocknr 76
+EndblockelectionBlocknr 176
+yes address 0xB4F5663773fB2842d1A74B2da0b5ec95f2ac125A
+no address 0x4333dD7Cc5349D6DAB1e9621E07319eda0d7c593
+Sender Acoount 0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+ETH funding of new account txhash:  0xbda305623a6531b7cca96cffebe8b554abf55897d2c4a9222256e4172fa77cd0
+Sending to 0xDe5f23Daa19Dd115EBD6bF150413340b6e6b02F0 from 0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+0xDe5f23Daa19Dd115EBD6bF150413340b6e6b02F0 owns 70000000000000000 Wei
+0xDe5f23Daa19Dd115EBD6bF150413340b6e6b02F0 has 1 Tokens
+The admin 0x6F240095d5954DC195c632bB382A3Fff9D08aFf0 has 0 Tokens left (should be 0)
+Registration over at block 12. Continue with commitments at 26
+Advancing to Block number 26
+------------ Starting Commit Round ----------------
+Current Blocknr,  28
+Current allowance 0
+Approving token for deposit
+New allowance 1
+Submitting deposit transaction
+Fee 0
+Value is:  0
+Notes are:  [
+  'tornado-vote-0x04249e6b19e7C49234565224c115a1294C585eB4-1337-0xe82b5e1a3b1339cdf45f3798c51be6f76be24a52daa1bae760e20f662dc3d39446b23b54e7e13b04901c8ba0c6a435270d7a9b1971dfd06573497c0b2716'
+]
+Committing Account  0xDe5f23Daa19Dd115EBD6bF150413340b6e6b02F0
+Vote_commitment_secret 0x42813035824082dcea6047927a62d0411642f4a5fd0941c0dc6d61003767ac00
+Getting current state from tornado contract
+0x0ff7d026431fc352fb38fdeb39472088cd6ee8c5
+----------------------------------
+Generating SNARK proof
+Proof time: 6.132s
+0x17589537a0416dad17c1bd2257d32a256911d00343c2d37776b21785c5124d6f1883fd44f646143211fb6731529afbf5c0e19954b20ab5186655bd91b70533632214fe0fb94d3fabd34ae7ee3af1699e422234667a1801f17ab47955134ce79a146c65a96dd8ce79fa4e3708cd3d962edd92549acee07031aa1776e10824765327690ab880d6c1f8ef15e91f872bddfbf87426e783ff2fe5498538636d8bf1160435938cce80c81f6651f1acd320faf63b8d8c7f21627c60b89314a1da3827d81e707ccb474276dc2e84276b6b15ecb67f027507a3fefe417ea1cd2e39fce45f2dbd070e0f957275ea17b64dafa69373471248781fdd75b3e11682cfd9144d18
+[
+  '0x2bb5c9cb2ac273e6809ea89f9d0a17115d9dfe25c40ad193bbff2c252795ed06',
+  '0x0030beb96a23ae632560437e79e5528bf63f68105dff7a967a8e969cc5c486d1',
+  '0x0ff7d026431fc352fb38fdeb39472088cd6ee8c5',
+  '0x0000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000000000000000000000000000',
+  '0x0000000000000000000000000000000000000000000000000000000000000000'
+]
+Secret  0x42813035824082dcea6047927a62d0411642f4a5fd0941c0dc6d61003767ac00
+Advancing to Block number 76
+------------ Starting Cast Round ----------------
+The number of Yes votes are:  0 (should be 0)
+The number of No votes are:  0 (should be 0)
+Casting Account  0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+Submitting secret 0x42813035824082dcea6047927a62d0411642f4a5fd0941c0dc6d61003767ac00
+Casting vote 0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+
+------------ All votes are cast ----------------
+The number of Yes votes are:  0
+The number of No votes are:  1
+{
+  "gas_register": [
+    43116
+  ],
+  "gas_register_min": 43116,
+  "gas_register_max": 43116,
+  "gas_register_sum": 43116,
+  "gas_register_mean": 43116,
+  "gas_register_sd": null,
+  "gas_approve": [
+    44013
+  ],
+  "gas_approve_min": 44013,
+  "gas_approve_max": 44013,
+  "gas_approve_sum": 44013,
+  "gas_approve_mean": 44013,
+  "gas_approve_sd": null,
+  "gas_deposit": [
+    1053733
+  ],
+  "gas_deposit_min": 1053733,
+  "gas_deposit_max": 1053733,
+  "gas_deposit_sum": 1053733,
+  "gas_deposit_mean": 1053733,
+  "gas_deposit_sd": null,
+  "gas_commit": [
+    337151
+  ],
+  "gas_commit_min": 337151,
+  "gas_commit_max": 337151,
+  "gas_commit_sum": 337151,
+  "gas_commit_mean": 337151,
+  "gas_commit_sd": null,
+  "gas_vote": [
+    50862
+  ],
+  "gas_vote_min": 50862,
+  "gas_vote_max": 50862,
+  "gas_vote_sum": 50862,
+  "gas_vote_mean": 50862,
+  "gas_vote_sd": null
+}

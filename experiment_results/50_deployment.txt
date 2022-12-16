@@ -1,0 +1,140 @@
+
+> circuits@1.0.0 migrate:dev /home/robert/git/tornado-vote
+> npx truffle migrate --network development --reset
+
+
+Compiling your contracts...
+===========================
+> Artifacts written to /home/robert/git/tornado-vote/build/contracts
+> Compiled successfully using:
+   - external: undefined
+
+
+Starting migrations...
+======================
+> Network name:    'development'
+> Network id:      1671195061070
+> Block gas limit: 6721975 (0x6691b7)
+
+
+1_initial_migration.js
+======================
+
+   Deploying 'Migrations'
+   ----------------------
+   > transaction hash:    0x866f2a9df84b1a932b08e34a15966ac4514681b8e1fd506d0ae9fe8665497a0c
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xd4270CC4dc20d91fB13a68e018784eD9a5496E8c
+   > block number:        1
+   > block timestamp:     1671195108
+   > account:             0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+   > balance:             99.99663428
+   > gas used:            168286 (0x2915e)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.00336572 ETH
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.00336572 ETH
+
+
+2_deploy_hasher.js
+==================
+
+   Deploying 'Hasher'
+   ------------------
+   > transaction hash:    0xe9f6df11f3fe973166d99e132603b465952cfec31d07a541b38286846811656a
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x7a240A0233B710F7B94Cf477372b07403eda689a
+   > block number:        3
+   > block timestamp:     1671195108
+   > account:             0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+   > balance:             99.94702442
+   > gas used:            2438214 (0x253446)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.04876428 ETH
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.04876428 ETH
+
+
+3_deploy_verifier.js
+====================
+
+   Deploying 'Verifier'
+   --------------------
+   > transaction hash:    0xb35c0982bb041643229571639f5d4bb7332543a1ca7d9bf19b6026ed4b0ff042
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x5B807ADD26EB0dB26dCBeA7Dae0ceAF33312e994
+   > block number:        5
+   > block timestamp:     1671195109
+   > account:             0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+   > balance:             99.92500626
+   > gas used:            1073629 (0x1061dd)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.02147258 ETH
+
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:          0.02147258 ETH
+
+
+4_deploy_vote_token.js
+======================
+Total Number of Votes:  50
+Yes Address:  0xb4f5663773fb2842d1a74b2da0b5ec95f2ac125a
+No Address:  0x4333dd7cc5349d6dab1e9621e07319eda0d7c593
+Blocknr =  6
+Registrationphase will end at block  1006
+Commitphase will end at block 3006
+Votingphase will end at block 13006
+
+   Deploying 'VoteToken'
+   ---------------------
+   > transaction hash:    0xe9a2b0b852520f5f6c4d3d22172e5a6c8c1a4df1f92210f29a734f7c4fd873cf
+   > Blocks: 0            Seconds: 0
+   > contract address:    0x04249e6b19e7C49234565224c115a1294C585eB4
+   > block number:        7
+   > block timestamp:     1671195110
+   > account:             0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+   > balance:             99.89669198
+   > gas used:            1388435 (0x152f93)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0277687 ETH
+
+Address of Votetoken:  0x04249e6b19e7C49234565224c115a1294C585eB4
+
+   Deploying 'ERC20Tornado'
+   ------------------------
+   > transaction hash:    0x7d897235583561767ae7a112e8e268592f917230aaee855b6f85567455204b21
+   > Blocks: 0            Seconds: 0
+   > contract address:    0xE9F0f5950a99861688D55bF00C7166Ac86F49A5E
+   > block number:        8
+   > block timestamp:     1671195115
+   > account:             0x6F240095d5954DC195c632bB382A3Fff9D08aFf0
+   > balance:             99.83085678
+   > gas used:            3291760 (0x323a70)
+   > gas price:           20 gwei
+   > value sent:          0 ETH
+   > total cost:          0.0658352 ETH
+
+ERC20Tornado's address  0xE9F0f5950a99861688D55bF00C7166Ac86F49A5E
+   > Saving migration to chain.
+   > Saving artifacts
+   -------------------------------------
+   > Total cost:           0.0936039 ETH
+
+Summary
+=======
+> Total deployments:   5
+> Final cost:          0.16720648 ETH
+
+
