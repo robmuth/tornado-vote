@@ -1,94 +1,46 @@
-# Tornado Vote (Private Voting based on tornado Cash)
+# Tornado Vote: Anonymous Blockchain-based Voting
 
-This repository contains a private vote protocol, developed for my Masterthesis. The voting protocol is an extension of the privacy protocol **[tornado cash](https://github.com/tornadocash/tornado-core)** and an ERC20 token of the **[Open Zeppelin Library v2.4](https://github.com/OpenZeppelin/openzeppelin-contracts/tree/release-v2.4.0)**. I am not associated with the team behind tornado cash.
+Tornado Vote is an anonymous and fair voting protocol, originally based on this [Master's Thesis](https://upcommons.upc.edu/handle/2117/364247?show=full) and [implementation](https://github.com/ananas-block/tornado-vote), supervised by [DSI](https://www.dsi.tu-berlin.de) at TU Berlin.
+To this end, Tornado Vote builds on the non-custodial mixer [Tornado Cash](https://github.com/tornadocash/tornado-core) for Ethereum.
 
-Tornado Cash is a noncustodial mixer which takes in tokens and a commitment, a hash. These commitments are added to a merkle tree. Using a zero knowledge proof a relayer can withdraw funds to a new address therefore unlinking the original address and the new address achieving certain anonymity.
+For more details, see the ICBC'23 paper (accepted and currently in publication):
+[MT23] Robert Muth and Florian Tschorsch. "Tornado Vote: Anonymous Blockchain-based Voting." In: IEEE International Conference on Blockchain and Cryptocurrency, 2023
 
-The voting protocol uses the anonymity of tornado cash to transfer extended ERC20 vote tokens to addresses specified at deployment which represent choices for example yes or no.
-
-
-**The voting protocol is composed of three phases:**
-
-**Registration Phase**: The administrator deploys the smart contracts and sets the parameters (initial Supply, address yes,address no,block endphase1,block endphase2,block endblockelection, address tornado_contract) and distributes the tokens to eligible voters. After distribution the administrator must retain one or zero vote tokens.
-
-**Commitment Phase**: Transfer token to anonymity provider and retain note. Subsequently, the voter uses the note to submit the first 20 bytes of a sha3 hash H(32 bytes randomness || 1 byte Vote) via a relayer to the anonymity provider which saves the hash in the vote token. This hash is a commitment for the vote to be cast next round to ensure fairness.
-
-![image](docs/Voting-Commit-Phase.png)
+> Decentralized apps (DApps) often hold significant cryptocurrency assets. In order to manage these assets and coordinate joint investments, shareholders leverage the underlying smart contract functionality to realize a transparent, verifiable, and secure decision-making process. That is, DApps implement proposal-based voting. Permissionless blockchains, however, lead to a conflict between transparency and anonymity; potentially preventing free decision-making if individual votes and intermediate results become public. In this paper, we therefore present Tornado Vote, a voting DApp for anonymous, fair, and practical voting on the Ethereum blockchain. We propose to use a cryptocurrency mixer such as Tornado Cash to reconcile transparency and anonymity. To this end, we adapt Tornado Cash and develop a voting protocol that implements a fair voting process. While Tornado Vote can technically process 10 k votes on Ethereum in approximately two hours, this is not feasible under realistic conditions: Third-party transactions on the Ethereum Mainnet reduce the possible throughput, and transaction fees make it infeasible to use all available block capacities. We therefore present various Gas cost models that yield lower bounds and economic estimations with respect to the required number of blocks and voting costs to assess and adjust Tornado Vote's feasibility trade-off.
 
 
-**Voting Phase**: The voter submits the inputs for the prior hash commitment in clear text over a relayer to the anonymity provider. The anonymity provider calls the vote token and with the given inputs which checks for the existence of a the first 20 bytes of a sha3 hash corresponding to the inputs. If a corresponding hash is found, it is deleted, and a vote is transferred to the choice given in the last byte of the input for the hash commitment.
+## Evaluation
 
-![image](docs/Voting-Vote-Phase.png)
+Please be careful to run the test cases and evaluation scripts locally (not connected to the Ethereum Mainnet).
 
+### Test cases: Casting a vote
 
-**Protocol Properties:**
-- self tallying
-- vote privacy
-- publicly verifiable with ethereum blockexplorer
-- fairness
-- no single point of failure after registration phase
+The following test case casts a vote locally with [Ganache](https://trufflesuite.com/ganache/).
+Therefore, the test case first commits to a vote and finally reveals the vote to be counted.
 
-## Security
+```
+nvm use v14.0.0
+npm run build:self
+ganache-cli --mnemonic "sock work police cube fine clean early much picture scan foot sure" –networkId 1337 &
+npm test ./test/VoteToken.test.js
+```
 
-Both the original tornado cash protocol and open zeppelin ERC20 token implementation have been audited and are deployed on the Ethereum mainnet today. Of the tornado cash code the withdraw function has been renamed commit and additional input and a function call to
-Since, the code has been modified, in particular the ERC20 token, a new security analysis was conducted using the tools, **[Slither]()**, **[Mythril]()** and **[VeriSol](https://github.com/microsoft/verisol)**. With VeriSol a number of safety properties have been formally verified, for details check the **[VeriSol directory](https://github.com/ananas-block/tornado-vote/tree/master/VeriSol)**.
+### Gas Costs Experiments
 
-**Nevertheless, this is still experimental software use at your own risk!**
+All evaluation results from the paper are available in ```./experiments_results/``` and can be re-run once again with our experiments script.
+The voting pararemters can be configured in ```./experiments.csv```.
 
-## Deploy
+```
+nvm use v12.0.0
+npm run build:self
+ganache-cli --mnemonic "sock work police cube fine clean early much picture scan foot sure" –networkId 1337 &
+./experiments.sh
+```
 
-### Test
-`nvm use v11.15.0`
+### Gas Costs Models
 
-`npm run install`
+The Gas costs model calculation results are available in a Sqlite database: ```./evaluation/eval.db``` (the file is zipped and split into 100MB chunks for Github, since LFS is not supported on forked repositories).
+To generate the same database again, the numbered shell scripts in ```./evaluations/``` can be executed in order. The required historic data are also available:
 
-`npm run build:self`
-(this step will take a while)
-
-`ganache-cli --mnemonic "sock work police cube fine clean early much picture scan foot sure" –networkId 1337`
-
-`npm test ./test/VoteToken.test.js`
-
-### Deploy locally
-`nvm use v11.15.0`
-
-`npm run build:self`
-
-`ganache-cli --mnemonic "sock work police cube fine clean early much picture scan foot sure" –networkId 1337`
-
-
-`npm run migrate:dev`
-
-`./cli.js test_ganache`
-
-### Deploy on testnet
-
-Edit .env file for election configuration
-
-`npx truffle migrate --network kovan --reset`
-
-configure .env file with path to file with election participants
-
-register participants in participants.txt file and retain one token
-`./cli.js register_testnet`
-
-`./cli.js deposit vote 1 -r <rpc-url>`
-
-`./cli.js commit <your-note> -Vote yes -r <rpc-url>`
-
-## Performance
-
-
-Admin:
-Deployment: 169586(migrations) + 2438214(hasher) +1073293(verifier) + 1401907 (VoteToken)+ 3268450 (Tornado) =  8,351,450
-Registration:
-  - 21,000 (if address funding)
-  - Voter registration: 63,016
-
-Commit:
-  - Approve: 46,113
-  - Deposit: 1,006,314
-  - Commit to Vote: 344,032
-
-Vote:
- - Cast: 58,151
+- ```./evaluation/blocks.csv.zip``` Mainnet blocks dump from Google Bigquery (also split into chunks)
+- ```./evaluation/export-EtherPrice.csv``` Historic exchange rated from Ether to USD from [Etherscan.io](https://etherscan.io)
