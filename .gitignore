@@ -109,3 +109,5 @@ package-lock.json
 /contracts/Libraries/*.txt
 
 .DS_Store
+evaluation/blocks.csv.zip
+evaluation/eval.db.zip
